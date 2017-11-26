@@ -40,6 +40,8 @@ F<taskwarrior.vim>.
     | <leader>pl | normal, visual | set priority of task(s) to be low          |
     | <leader>W  | normal, visual | set 'wait' for task(s)                     |
 
+The plugin will set the buffer listing the tasks as  a file of type C<task>.
+
 =cut
 
 use 5.20.0;
@@ -159,7 +161,7 @@ subscribe tw_delete => rpcrequest
             # TODO make this promisable?
             $self->task->delete( [ "rc.confirmation:no" ], $uuid );
             push @promises, $self->rpc->api->vim_command( "g/$uuid/d" )->then(sub{
-                $self->rpc->api->vim_command( "echo 'delete $uuid'" );
+                $self->rpc->api->vim_command( "echo 'deleted $uuid'" );
             } );
         }
         return collect @promises;
