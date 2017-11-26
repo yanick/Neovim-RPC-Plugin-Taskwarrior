@@ -1,48 +1,7 @@
 package Neovim::RPC::Plugin::Taskwarrior;
+our $AUTHORITY = 'cpan:YANICK';
 # ABSTRACT: UI for taskwarrior
-
-=head1 DESCRIPTION
-
-This plugin needs a few things to work.
-
-First, C<nvim> must be configured to use L<Neovim::RPC> (duh).
-
-Then configure nvim to use the vim side of this plugin as well as
-TableMode. I use C<Plugged>, and  my configuration looks like:
-
-    Plug 'yanick/Neovim-RPC-Plugin-Taskwarrior'
-    Plug 'dhruvasagar/vim-table-mode', {
-        \ 'on': [ 'TableModeEnable' ]
-    \ }
-
-
-Once all of that is done, you can invoke the taskwarrior UI via
-C<:Task>. Or straight from the command-line as 
-
-    $ nvim -c 'call Task()'
-
-The plugin has a slew of commands built-in. Right now,
-if you want to change the aliases, just go and dive in
-F<taskwarrior.vim>.
-
-    | command    | mode           | description                                |
-    | ----       | ---            | ---                                        |
-    | <leader>d  | normal, visual | mark task(s) as done                       |
-    | <leader>D  | normal, visual | delete task(s)                             |
-    | <leader>ll | normal         | show all +PENDING tasks                    |
-    | <leader>lf | normal         | show all +focus tasks                      |
-    | <leader>lq | normal         | show tasks, prompt for filter              |
-    | <leader>m  | normal, visual | mod task(s), prompt for modification       |
-    | <leader>m  | normal, visual | append to task(s), prompt for modification |
-    | <leader>i  | normal, visual | show info for task(s)                      |
-    | <leader>ph | normal, visual | set priority of task(s) to be high         |
-    | <leader>pm | normal, visual | set priority of task(s) to be medium       |
-    | <leader>pl | normal, visual | set priority of task(s) to be low          |
-    | <leader>W  | normal, visual | set 'wait' for task(s)                     |
-
-The plugin will set the buffer listing the tasks as  a file of type C<task>.
-
-=cut
+$Neovim::RPC::Plugin::Taskwarrior::VERSION = '0.0.1';
 
 use 5.20.0;
 
@@ -300,3 +259,70 @@ sub _tw_find_output_window($self) {
 
 
 1;
+
+__END__
+
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+Neovim::RPC::Plugin::Taskwarrior - UI for taskwarrior
+
+=head1 VERSION
+
+version 0.0.1
+
+=head1 DESCRIPTION
+
+This plugin needs a few things to work.
+
+First, C<nvim> must be configured to use L<Neovim::RPC> (duh).
+
+Then configure nvim to use the vim side of this plugin as well as
+TableMode. I use C<Plugged>, and  my configuration looks like:
+
+    Plug 'yanick/Neovim-RPC-Plugin-Taskwarrior'
+    Plug 'dhruvasagar/vim-table-mode', {
+        \ 'on': [ 'TableModeEnable' ]
+    \ }
+
+Once all of that is done, you can invoke the taskwarrior UI via
+C<:Task>. Or straight from the command-line as 
+
+    $ nvim -c 'call Task()'
+
+The plugin has a slew of commands built-in. Right now,
+if you want to change the aliases, just go and dive in
+F<taskwarrior.vim>.
+
+    | command    | mode           | description                                |
+    | ----       | ---            | ---                                        |
+    | <leader>d  | normal, visual | mark task(s) as done                       |
+    | <leader>D  | normal, visual | delete task(s)                             |
+    | <leader>ll | normal         | show all +PENDING tasks                    |
+    | <leader>lf | normal         | show all +focus tasks                      |
+    | <leader>lq | normal         | show tasks, prompt for filter              |
+    | <leader>m  | normal, visual | mod task(s), prompt for modification       |
+    | <leader>m  | normal, visual | append to task(s), prompt for modification |
+    | <leader>i  | normal, visual | show info for task(s)                      |
+    | <leader>ph | normal, visual | set priority of task(s) to be high         |
+    | <leader>pm | normal, visual | set priority of task(s) to be medium       |
+    | <leader>pl | normal, visual | set priority of task(s) to be low          |
+    | <leader>W  | normal, visual | set 'wait' for task(s)                     |
+
+The plugin will set the buffer listing the tasks as  a file of type C<task>.
+
+=head1 AUTHOR
+
+Yanick Champoux <yanick@babyl.dyndns.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2017 by Yanick Champoux.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
